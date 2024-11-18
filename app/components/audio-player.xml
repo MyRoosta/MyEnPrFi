@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridLayout rows="auto, *, auto" class="player-container">
+    <!-- Canvas for Waveform -->
+    <ContentView row="1" class="waveform-container">
+        <Canvas id="waveformCanvas" />
+    </ContentView>
+
+    <!-- Controls -->
+    <GridLayout row="2" columns="auto, *, auto, auto, auto" class="controls-container">
+        <Button col="0" text="&#xf048;" class="fas control-button" tap="{{ previousTrack }}" />
+        <Slider col="1" value="{{ currentTime }}" maxValue="{{ duration }}" />
+        <Button col="2" text="{{ isPlaying ? '&#xf04c;' : '&#xf04b;' }}" class="fas control-button" tap="{{ togglePlayPause }}" />
+        <Button col="3" text="&#xf051;" class="fas control-button" tap="{{ nextTrack }}" />
+        <Button col="4" text="&#xf01e;" class="fas control-button" tap="{{ toggleRepeat }}" />
+    </GridLayout>
+
+    <!-- Subtitle Display -->
+    <Label row="3" text="{{ currentSubtitle }}" class="subtitle-text" textWrap="true" />
+</GridLayout>
