@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="Audio Player">
+    <ActionItem position="right" tap="{{ onSettingsTap }}">
+      <Label text="&#xf013;" class="fas" />
+    </ActionItem>
+  </ActionBar>
+  
+  <GridLayout rows="auto, auto, *, auto">
+    <!-- Subtitle Display -->
+    <StackLayout row="0" class="subtitle-container m-2 p-4">
+      <Label text="{{ currentSubtitle }}" 
+             class="subtitle-text text-center"
+             style="{{ subtitleStyle }}" 
+             textWrap="true" />
+    </StackLayout>
+
+    <!-- Subtitle Controls -->
+    <GridLayout row="1" columns="*, *" class="p-2">
+      <TextField hint="Repeat Count" 
+                 text="{{ subtitleRepeatCount }}"
+                 keyboardType="number"
+                 col="0" class="m-1" />
+      <TextField hint="Delay (seconds)" 
+                 text="{{ subtitleDelay }}"
+                 keyboardType="number"
+                 col="1" class="m-1" />
+    </GridLayout>
+
+    <!-- Waveform and Controls -->
+    <GridLayout row="2" rows="*, auto">
+      <!-- Waveform -->
+      <ContentView row="0" class="waveform-container">
+        <!-- Waveform visualization will be added here -->
+      </ContentView>
+
+      <!-- Playback Controls -->
+      <StackLayout row="1" class="controls-container p-2">
+        <Slider value="{{ playbackSpeed }}" 
+                minValue="0.5" 
+                maxValue="1.5"
+                class="slider" />
+        <Label text="Speed: {{ playbackSpeed }}x" 
+               class="text-center text-sm" />
+        
+        <GridLayout columns="auto, auto, auto, *, auto" class="playback-controls">
+          <Button text="&#xf048;" tap="{{ onPrevious }}" col="0" class="fas" />
+          <Button text="{{ isPlaying ? '&#xf04c;' : '&#xf04b;' }}" 
+                  tap="{{ onPlayPause }}" 
+                  col="1" class="fas" />
+          <Button text="&#xf051;" tap="{{ onNext }}" col="2" class="fas" />
+          <Button text="{{ repeatMode }}" 
+                  tap="{{ onToggleRepeat }}" 
+                  col="4" class="fas" />
+        </GridLayout>
+      </StackLayout>
+    </GridLayout>
+
+    <!-- Playlist -->
+    <ListView row="3" items="{{ playlist }}" 
+              height="150" class="playlist-container">
+      <ListView.itemTemplate>
+        <GridLayout columns="*, auto" class="playlist-item p-2">
+          <Label text="{{ title }}" col="0" />
+          <Label text="{{ duration }}" col="1" />
+        </GridLayout>
+      </ListView.itemTemplate>
+    </ListView>
+  </GridLayout>
+</Page>

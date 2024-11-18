@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="File Manager" />
+  
+  <GridLayout rows="auto, *, auto">
+    <!-- Folder Navigation -->
+    <StackLayout row="0" class="p-2">
+      <Button text="Import Songs" tap="{{ onImportSongs }}" class="btn btn-primary m-2" />
+      <Button text="Select Folder" tap="{{ onSelectFolder }}" class="btn btn-secondary m-2" />
+    </StackLayout>
+
+    <!-- Song List -->
+    <ListView row="1" items="{{ songs }}" itemTap="{{ onSongTap }}">
+      <ListView.itemTemplate>
+        <GridLayout columns="*, auto" class="p-2 border-b border-gray-200">
+          <StackLayout col="0">
+            <Label text="{{ title }}" class="font-semibold" />
+            <Label text="{{ duration }}" class="text-sm text-gray-500" />
+          </StackLayout>
+          <Button text="+" tap="{{ $parent.onAddToPlaylist }}" 
+                  col="1" class="btn btn-sm btn-outline" />
+        </GridLayout>
+      </ListView.itemTemplate>
+    </ListView>
+
+    <!-- Current Folder Path -->
+    <Label row="2" text="{{ currentPath }}" class="p-2 text-sm text-gray-500" textWrap="true" />
+  </GridLayout>
+</Page>
